@@ -1,7 +1,7 @@
 import {
-  Link,
   Box,
   Button,
+  Image,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,13 +9,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   useDisclosure,
-  Image,
 } from "@chakra-ui/react";
 import React from "react";
 import { Result } from "../schemas/movies.schema";
-import MovieDetails from "./MovieDetails";
 interface MovieProps {
   movie: Result;
 }
@@ -23,7 +20,7 @@ function MovieBox(props: MovieProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
   const {
-    movie: { poster_path, title, overview, release_date },
+    movie: { poster_path, title, overview },
   } = props;
 
   return (
@@ -35,8 +32,14 @@ function MovieBox(props: MovieProps) {
           alt=""
         />
       </Box>
-      {/* <MovieDetails /> */}
-      <Button mt={4} marginLeft="140px" width="50%" onClick={onOpen}>
+
+      <Button
+        marginBottom={3}
+        mt={4}
+        marginLeft="140px"
+        width="50%"
+        onClick={onOpen}
+      >
         more details
       </Button>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>

@@ -1,6 +1,6 @@
 import { ChakraProvider, Heading } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AllMovies from "./components/AllMovies";
 import MyWatchList from "./components/MyWatchList";
 
@@ -11,11 +11,14 @@ function App() {
       <ChakraProvider>
         <BrowserRouter>
           <QueryClientProvider client={queryClient}>
-            <Heading> welcome to Movie web app</Heading>
+            <Heading mb={5} textAlign={"center"}>
+              {" "}
+              welcome to Movie web app
+            </Heading>
             <Routes>
               <Route path="/allmovies" element={<AllMovies />} />
               <Route path="/watchlist" element={<MyWatchList />} />
-              {/* <Route path="/moviedetails" element={<MovieDetails />} /> */}
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </QueryClientProvider>
         </BrowserRouter>
