@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Container, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getAllMovies } from "../apiinstance/getMovies";
 import { Result } from "../schemas/movies.schema";
@@ -19,11 +19,11 @@ function AllMovies() {
 
   return (
     <>
-      <SimpleGrid>
+      <Container maxW="container.sm">
         {movies?.map((movie) => {
           return <MovieBox key={movie.id} movie={movie} />;
         })}
-      </SimpleGrid>
+      </Container>
     </>
   );
 }
