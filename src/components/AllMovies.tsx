@@ -1,12 +1,14 @@
-import { Container, SimpleGrid } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { getAllMovies } from "../apiinstance/getMovies";
+import { useQuery } from "react-query";
+import { getAllMovies, getWatchListMovies } from "../apiinstance/getMovies";
 import { Result } from "../schemas/movies.schema";
 import MovieBox from "./MovieBox";
 function AllMovies() {
   const [movies, setMovies] = useState<Result[]>();
-
-  const fetchData = async () => {
+  const { data } = useQuery("moviewatchlistdata", () => getWatchListMovies());
+  console.log(data);
+  const fetchMovieData = async () => {
     const moviedata = await getAllMovies();
     console.log(moviedata.results);
     setMovies(moviedata.results);
@@ -14,16 +16,20 @@ function AllMovies() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchMovieData();
   }, []);
 
   return (
     <>
-      <Container maxW="container.sm">
+      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
         {movies?.map((movie) => {
-          return <MovieBox key={movie.id} movie={movie} />;
+          return (
+            <GridItem key={movie.id}>
+              <MovieBox movie={movie} />
+            </GridItem>
+          );
         })}
-      </Container>
+      </Grid>
     </>
   );
 }

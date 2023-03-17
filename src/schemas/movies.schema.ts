@@ -1,9 +1,9 @@
 import { InferType, object, string } from "yup";
 
 export const movieSchema = object({
-  movieName: string(),
-  description: string(),
-  date: string(),
+  title: string(),
+  overview: string(),
+  imgurl: string(),
 });
 export interface Moviedata {
   page: number;
