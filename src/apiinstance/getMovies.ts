@@ -1,4 +1,8 @@
-import { Moviedata, MovieInterface } from "../schemas/movies.schema";
+import {
+  Moviedata,
+  MovieInterface,
+  WatchListItem,
+} from "../schemas/movies.schema";
 import { axiosInstance } from "./api.instance";
 
 export const getAllMovies = async (): Promise<Moviedata> => {
@@ -15,7 +19,7 @@ export const myWatchList = async (data: MovieInterface) => {
 export const getWatchListMovies = async () => {
   const watchListResponse = await axiosInstance.get("/movie/watchlist");
   console.log(watchListResponse.data);
-  return watchListResponse.data;
+  return watchListResponse.data as WatchListItem[];
 };
 
 export const markWatchedMovie = async (id: number) => {

@@ -15,7 +15,7 @@ function MyWatchList() {
     <>
       <Navbar />
       <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {data?.map((movie: MovieInterface, id: number) => {
+        {data?.map((movie, id: number) => {
           return (
             <GridItem my={5} key={id}>
               <WatchlistBox movie={movie} />
