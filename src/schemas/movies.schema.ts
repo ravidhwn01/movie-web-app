@@ -1,15 +1,25 @@
-import { InferType, object, string } from "yup";
+import { boolean, InferType, object, string } from "yup";
 
 export const movieSchema = object({
   title: string(),
   overview: string(),
-  imgurl: string(),
+  imgUrl: string(),
+  isWatched: boolean(),
 });
+
 export interface Moviedata {
   page: number;
   results: Result[];
   total_pages: number;
   total_results: number;
+}
+
+export interface WatchListItem {
+  id: number;
+  title: string;
+  overview: string;
+  imgUrl: string;
+  isWatched: boolean;
 }
 
 export interface Result {
@@ -32,6 +42,7 @@ export interface Result {
   original_name?: string;
   first_air_date?: Date;
   origin_country?: string[];
+  imgUrl: string;
 }
 
 export enum MediaType {
@@ -45,4 +56,4 @@ export enum OriginalLanguage {
   Ko = "ko",
 }
 
-export type movieInterface = InferType<typeof movieSchema>;
+export type MovieInterface = InferType<typeof movieSchema>;

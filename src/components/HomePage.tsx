@@ -1,17 +1,31 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Center, Flex, Link, Text } from "@chakra-ui/react";
 import React from "react";
 import AllMovies from "./AllMovies";
+import Navbar from "./Navbar";
 
 function HomePage() {
   return (
-    <Flex direction={"column"} p="6">
-      <Text fontSize="3xl" fontWeight="bold" textAlign="center" bgColor="red">
-        Welcome to movie web app
-      </Text>
-      <Flex py="8">
-        <AllMovies />
+    <>
+      <Navbar />
+      <Flex
+        direction={"column"}
+        p="6"
+        justifyContent={"center"}
+        h="100vh"
+        width="100vw"
+        alignContent={"center"}
+      >
+        <Text
+          textColor={"blue"}
+          fontSize="3xl"
+          fontWeight="bold"
+          textAlign="center"
+          width={"full"}
+        >
+          Movie Manager
+        </Text>
       </Flex>
-    </Flex>
+    </>
   );
 }
 

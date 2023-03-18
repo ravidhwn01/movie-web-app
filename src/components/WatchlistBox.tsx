@@ -11,41 +11,40 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { MovieInterface, movieSchema, Result } from "../schemas/movies.schema";
-import { useMutation, useQueryClient } from "react-query";
-import { myWatchList } from "../apiinstance/getMovies";
+import React from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { markWatchedMovie } from "../apiinstance/getMovies";
+import {
+  MovieInterface,
+  Result,
+  WatchListItem,
+} from "../schemas/movies.schema";
 interface MovieProps {
-  movie: Result;
+  movie: WatchListItem;
 }
-export const MovieBox: FC<MovieProps> = ({ movie }) => {
+function WatchlistBox(props: MovieProps) {
   const queryClient = useQueryClient();
+  const {
+    movie: { title, overview, imgUrl, isWatched, id },
+  } = props;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
-  const { poster_path, title, overview } = movie;
-  const onsubmitHandle = () => {
-    console.log(movie);
-    mutation.mutate({
-      ...movie,
-      imgUrl: `https://image.tmdb.org/t/p/w300/${poster_path}`,
-      title: movie.title || movie.name,
-    } as any);
+  const markWatchedHandle = async () => {
+    markWatchedMutation.mutate(id);
+    // markWatchedMutation.mutate();
   };
-  const mutation = useMutation(myWatchList, {
-    onSuccess: () => {
+
+  const markWatchedMutation = useMutation(markWatchedMovie, {
+    onSettled: () => {
       onClose();
     },
   });
+
   return (
     <>
       <Box>
-        <Image
-          marginLeft="140px"
-          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-          alt=""
-        />
+        <Image marginLeft="140px" src={imgUrl} alt="" />
       </Box>
 
       <Button
@@ -54,7 +53,6 @@ export const MovieBox: FC<MovieProps> = ({ movie }) => {
         marginLeft="170px"
         width="50%"
         onClick={onOpen}
-        colorScheme="green"
       >
         more details
       </Button>
@@ -65,7 +63,7 @@ export const MovieBox: FC<MovieProps> = ({ movie }) => {
             <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
             <Image
-              src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+              src={imgUrl}
               width={100}
               marginLeft="150px"
               alt="loading..."
@@ -76,15 +74,17 @@ export const MovieBox: FC<MovieProps> = ({ movie }) => {
               <Button colorScheme="blue" mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button type="submit" onClick={onsubmitHandle}>
-                Add to watchlist
-              </Button>
+              {!isWatched && (
+                <Button type="submit" onClick={markWatchedHandle}>
+                  ✅
+                </Button>
+              )}
             </ModalFooter>
           </ModalContent>
         </Modal>
       </form>
     </>
   );
-};
+}
 
-export default MovieBox;
+export default WatchlistBox;
