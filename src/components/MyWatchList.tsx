@@ -1,15 +1,11 @@
-import { Grid, GridItem, Image } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { useQuery } from "react-query";
-import { getWatchListMovies, myWatchList } from "../apiinstance/getMovies";
-import { MovieInterface } from "../schemas/movies.schema";
-import MovieBox from "./MovieBox";
+import { getWatchListMovies } from "../apiinstance/getMovies";
 import Navbar from "./Navbar";
 import WatchlistBox from "./WatchlistBox";
 
 function MyWatchList() {
   const { data } = useQuery("moviewatchlistdata", () => getWatchListMovies());
-  console.log(data);
-  // myWatchList()
 
   return (
     <>

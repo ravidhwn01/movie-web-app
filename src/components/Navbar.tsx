@@ -1,5 +1,4 @@
-import { Flex, HStack, Link } from "@chakra-ui/react";
-import React from "react";
+import { Flex, Link } from "@chakra-ui/react";
 
 function Navbar() {
   return (

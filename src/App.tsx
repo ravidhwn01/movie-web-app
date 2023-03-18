@@ -1,4 +1,4 @@
-import { ChakraProvider, Heading } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AllMovies from "./components/AllMovies";

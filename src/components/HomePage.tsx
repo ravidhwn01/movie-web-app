@@ -1,6 +1,4 @@
-import { Center, Flex, Link, Text } from "@chakra-ui/react";
-import React from "react";
-import AllMovies from "./AllMovies";
+import { Flex, Link, Text } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 
 function HomePage() {
@@ -24,6 +22,38 @@ function HomePage() {
         >
           Movie Manager
         </Text>
+        <Link
+          my={3}
+          textAlign="center"
+          fontWeight="md"
+          mx="800px"
+          href="/allmovies"
+          _hover={{
+            color: "white",
+            bg: "blue",
+            fontWeight: "bold",
+            borderRadius: "md",
+          }}
+          p="2"
+        >
+          All Movies
+        </Link>
+        <Link
+          my={3}
+          textAlign="center"
+          fontWeight="md"
+          mx="800px"
+          href="/watchlist"
+          _hover={{
+            color: "white",
+            bg: "blue",
+            fontWeight: "bold",
+            borderRadius: "md",
+          }}
+          p="2"
+        >
+          My Watchlist
+        </Link>
       </Flex>
     </>
   );

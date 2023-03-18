@@ -12,11 +12,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { FC } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { MovieInterface, movieSchema, Result } from "../schemas/movies.schema";
 import { useMutation, useQueryClient } from "react-query";
 import { myWatchList } from "../apiinstance/getMovies";
+import { Result } from "../schemas/movies.schema";
 interface MovieProps {
   movie: Result;
 }

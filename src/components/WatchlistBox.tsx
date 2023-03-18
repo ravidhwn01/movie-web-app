@@ -12,13 +12,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { markWatchedMovie } from "../apiinstance/getMovies";
-import {
-  MovieInterface,
-  Result,
-  WatchListItem,
-} from "../schemas/movies.schema";
+import { WatchListItem } from "../schemas/movies.schema";
 interface MovieProps {
   movie: WatchListItem;
 }
